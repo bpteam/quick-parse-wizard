@@ -1,0 +1,21 @@
+{
+  "name": "bpteam/quick-parse-wizard",
+  "description": "Project designed to simplify the process of creating web scraping, making it accessible and effective for both experienced developers and users with a weak technical level.",
+  "require": {
+    "php": "^8.0",
+    "ext-mbstring": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9"
+  },
+  "autoload" : {
+    "psr-4": {
+      "bpteam\\QuickParserWizard\\": "src"
+    }
+  },
+  "autoload-dev" : {
+    "psr-4": {
+      "bpteam\\QuickParserWizard\\Tests\\": "tests"
+    }
+  }
+}
