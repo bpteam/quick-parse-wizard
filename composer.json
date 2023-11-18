@@ -1,6 +1,7 @@
 {
   "name": "bpteam/quick-parse-wizard",
   "description": "Project designed to simplify the process of creating web scraping, making it accessible and effective for both experienced developers and users with a weak technical level.",
+  "license": "MIT",
   "require": {
     "php": "^8.0",
     "ext-mbstring": "*"
