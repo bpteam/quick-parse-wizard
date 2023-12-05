@@ -1,4 +1,9 @@
 <phpunit bootstrap="vendor/autoload.php">
+    <php>
+        <ini name="display_errors" value="1" />
+        <ini name="error_reporting" value="-1" />
+        <server name="RAPID_API_KEY" value="0123456789" force="true" />
+    </php>
     <filter>
         <whitelist>
             <directory>./</directory>
