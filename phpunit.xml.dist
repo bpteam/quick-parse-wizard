@@ -1,18 +1,19 @@
-<phpunit bootstrap="vendor/autoload.php">
-    <php>
-        <ini name="display_errors" value="1" />
-        <ini name="error_reporting" value="-1" />
-        <server name="RAPID_API_KEY" value="0123456789" force="true" />
-    </php>
-    <filter>
-        <whitelist>
-            <directory>./</directory>
-        </whitelist>
-    </filter>
-    <testsuite name="mait_tests">
-        <directory>./tests</directory>
-    </testsuite>
-    <!--<logging>
-        <log type="coverage-clover" target="build/logs/clover.xml"/>
-    </logging>-->
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="vendor/autoload.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+<coverage>
+    <include>
+        <directory>./</directory>
+    </include>
+</coverage>
+<php>
+    <ini name="display_errors" value="1"/>
+    <ini name="error_reporting" value="-1"/>
+    <env name="RAPID_API_KEY" value="0123456789" force="true"/>
+</php>
+<testsuite name="mait_tests">
+    <directory>./tests</directory>
+</testsuite>
+<!--<logging>
+      <log type="coverage-clover" target="build/logs/clover.xml"/>
+  </logging>-->
 </phpunit>

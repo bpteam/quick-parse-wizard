@@ -3,6 +3,7 @@
 namespace bpteam\QuickParserWizard\Loader;
 
 use bpteam\QuickParserWizard\Enum\HttpMethod;
+use bpteam\QuickParserWizard\Exception\ResponseInvalidException;
 use bpteam\QuickParserWizard\ValueObject\Header;
 use bpteam\QuickParserWizard\ValueObject\HeaderCollection;
 use bpteam\QuickParserWizard\ValueObject\ContentLoaderResponse;
@@ -34,16 +35,21 @@ class BrowserScrapeCrusaderLoader implements LoaderInterface
 
         $guzzleConfig = [
             RequestOptions::HEADERS => $headers,
-            RequestOptions::JSON => json_encode([
+            RequestOptions::JSON => [
                 'url' => $url,  // TODO implement method/body/headers/proxy for ScrapeCrusader
-            ]),
+            ],
         ];
 
         $response = $this->client->request('POST', 'https://' . $this->rapidApiHost . '/render/content', $guzzleConfig);
         $data = json_decode($response->getBody()->getContents(), true);
+
+        if (empty($data['result']['code']) || empty($data['result']['content'])) {
+            throw new ResponseInvalidException;
+        }
+
         return new ContentLoaderResponse(
-            $data['code'],
-            $data['content'],
+            $data['result']['code'],
+            $data['result']['content'],
             new HeaderCollection([]), // TODO implement headers provider from ScrapeCrusader
         );
     }

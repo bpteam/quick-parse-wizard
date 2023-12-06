@@ -9,7 +9,7 @@ use bpteam\QuickParserWizard\ValueObject\HeaderCollection;
 
 class ResponseValidatorByRegexpLoader implements LoaderInterface
 {
-    private function __construct(
+    public function __construct(
         private readonly LoaderInterface $loader,
         private readonly string $validateRegexp,
         private readonly int $retryQuantity = 5,
