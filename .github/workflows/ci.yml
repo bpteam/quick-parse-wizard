@@ -29,6 +29,8 @@ jobs:
       - name: Run composer install
         run: composer install -n --prefer-dist
       - name: Run PHPUnit
+        env:
+          RAPID_API_KEY: ${{ secrets.RAPID_API_KEY }}
         run: php ./vendor/bin/phpunit
 
   php-test-8_1:
