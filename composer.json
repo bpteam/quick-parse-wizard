@@ -3,8 +3,10 @@
   "description": "Project designed to simplify the process of creating web scraping, making it accessible and effective for both experienced developers and users with a weak technical level.",
   "license": "MIT",
   "require": {
-    "php": "^8.0",
-    "ext-mbstring": "*"
+    "php": "^8.1",
+    "ext-mbstring": "*",
+    "guzzlehttp/guzzle": "^7.8",
+    "caseyamcl/guzzle_retry_middleware": "^2.9"
   },
   "require-dev": {
     "phpunit/phpunit": "^9"
