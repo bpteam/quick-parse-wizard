@@ -62,7 +62,7 @@ SQL);
     ): void {
         $query = $this->pdo->prepare(<<<SQL
 INSERT INTO "$this->tableName" ("key_group", "key_name", "key", "limit", "init_limit", "time_window", "next_flush")
-VALUES (:group_name, :key_name, :key, $limit, $limit, :time_window, NOW() + interval :time_window)
+VALUES (:group_name, :key_name, :key, $limit, $limit, :time_window, NOW() + :time_window)
 ON CONFLICT ("key_group", "key_name") DO UPDATE SET
     "key" = EXCLUDED."key",
     "limit" = EXCLUDED."limit",
