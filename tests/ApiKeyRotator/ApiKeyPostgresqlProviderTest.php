@@ -12,7 +12,7 @@ class ApiKeyPostgresqlProviderTest extends TestCase
     {
         $provider = new ApiKeyPostgresqlProvider(
             new \PDO(
-                'pgsql:host=postgres;port=5432;dbname=postgres',
+                'pgsql:host=localhost;port=5432;dbname=postgres',
                 'postgres',
                 'postgres',
                 [\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]
