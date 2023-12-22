@@ -34,7 +34,7 @@ UPDATE "$this->tableName" SET
 WHERE "key_group" = :key_group AND "key_name" = :key_name
 SQL);
                 $query->execute(['key_group' => $this->keyGroup, 'key_name' => $data['key_name'], 'price' => $price]);
-
+                var_dump($data['key']);
                 return unserialize($data['key']);
             } else {
                 $query = $this->pdo->prepare(<<<SQL
