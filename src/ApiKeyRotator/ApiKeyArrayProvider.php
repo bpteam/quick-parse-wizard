@@ -14,10 +14,10 @@ class ApiKeyArrayProvider implements ApiKeyProviderInterface
     {
         while (true) {
             $now = new \DateTimeImmutable();
-            foreach ($this->storage as $keyName => $item) {
+            foreach ($this->storage as &$item) {
                 if ($item['next_flush'] < $now) {
-                    $this->storage[$keyName]['next_flush'] = $now->add($item['time_window']);
-                    $this->storage[$keyName]['limit'] = $item['init_limit'];
+                    $item['next_flush'] = $now->add($item['time_window']);
+                    $item['limit'] = $item['init_limit'];
                 }
                 if ($item['limit'] && $item['limit'] >= $price) {
                     $item['limit'] -= $price;
