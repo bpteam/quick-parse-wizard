@@ -19,6 +19,8 @@ composer require bpteam/quick-parse-wizard
 - TextExtractor
   - extract text from html tag without dom parsing
   - divide text to sentences 
+- ApiKeyRotator
+  - rotate api keys by requests count with limit for each key by time and price 
 
 ## Tests
 
