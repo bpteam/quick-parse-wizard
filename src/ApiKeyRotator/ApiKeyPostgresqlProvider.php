@@ -30,7 +30,7 @@ SQL);
             if ($data) {
                 $query = $this->pdo->prepare(<<<SQL
 UPDATE "$this->tableName" SET
-    "limit" = "limit" - :price,
+    "limit" = "limit" - :price
 WHERE "key_group" = :key_group AND "key_name" = :key_name
 SQL);
                 $query->execute(['key_group' => $this->keyGroup, 'key_name' => $data['key_name'], 'price' => $price]);
