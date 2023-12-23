@@ -34,8 +34,8 @@ UPDATE "$this->tableName" SET
 WHERE "key_group" = :key_group AND "key_name" = :key_name
 SQL);
                 $query->execute(['key_group' => $this->keyGroup, 'key_name' => $data['key_name'], 'price' => $price]);
-                var_dump($data['key']);
-                return unserialize($data['key']);
+
+                return unserialize(base64_decode($data['key']));
             } else {
                 $query = $this->pdo->prepare(<<<SQL
 UPDATE "$this->tableName" SET "next_flush" = NOW() + "time_window", "limit" = "init_limit"
@@ -73,7 +73,7 @@ SQL);
         $query->execute([
             'group_name' => $this->keyGroup,
             'key_name' => $keyName,
-            'key' => serialize($key),
+            'key' => base64_encode(serialize($key)),
             'time_window' => $timeWindow->format('%y years %m months %d days %h hours %i minutes %s seconds'),
         ]);
     }
