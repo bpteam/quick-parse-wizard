@@ -9,6 +9,10 @@
     <ini name="display_errors" value="1"/>
     <ini name="error_reporting" value="-1"/>
     <env name="RAPID_API_KEY" value="0123456789"/>
+    <env name="DB_HOST" value="postgres"/>
+    <env name="DB_USERNAME" value="postgres"/>
+    <env name="DB_PASSWORD" value="postgres"/>
+    <env name="DB_DATABASE" value="postgres"/>
 </php>
 <testsuite name="mait_tests">
     <directory>./tests</directory>

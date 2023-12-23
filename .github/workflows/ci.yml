@@ -15,6 +15,20 @@ jobs:
   php-test-8_1:
     name: phpunit 8.1
     runs-on: 'ubuntu-latest'
+    services:
+      postgres:
+        image: postgres:16.1-alpine3.19
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
       - uses: actions/checkout@v2
 
@@ -31,10 +45,28 @@ jobs:
       - name: Run PHPUnit
         env:
           RAPID_API_KEY: ${{ secrets.RAPID_API_KEY }}
+          DB_HOST: postgres
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
+          DB_DATABASE: postgres
         run: php ./vendor/bin/phpunit
   php-test-8_2:
     name: phpunit 8.2
     runs-on: 'ubuntu-latest'
+    services:
+      postgres:
+        image: postgres:16.1-alpine3.19
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_DB: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
       - uses: actions/checkout@v2
 
@@ -51,4 +83,8 @@ jobs:
       - name: Run PHPUnit
         env:
           RAPID_API_KEY: ${{ secrets.RAPID_API_KEY }}
+          DB_HOST: postgres
+          DB_USERNAME: postgres
+          DB_PASSWORD: postgres
+          DB_DATABASE: postgres
         run: php ./vendor/bin/phpunit
