@@ -1,6 +1,6 @@
 # Quick Parse Wizard
 
-php classes for work with text and html
+php classes for help to developers for setup scrappers with additional tools
 
 ## Installation
 
