@@ -18,6 +18,12 @@ class ApiKeyPostgresqlProvider implements ApiKeyProviderInterface
     {
         while (true) {
             $query = $this->pdo->prepare(<<<SQL
+UPDATE "$this->tableName" SET "next_flush" = NOW() + "time_window", "limit" = "init_limit"
+WHERE "key_group" = :key_group AND "next_flush" < NOW()
+SQL);
+            $query->execute(['key_group' => $this->keyGroup]);
+
+            $query = $this->pdo->prepare(<<<SQL
 SELECT "key", "key_name"
 FROM "$this->tableName"
 WHERE "key_group" = :key_group AND "limit" >= :price LIMIT 1
@@ -36,12 +42,6 @@ SQL);
                 $query->execute(['key_group' => $this->keyGroup, 'key_name' => $data['key_name'], 'price' => $price]);
 
                 return unserialize(base64_decode($data['key']));
-            } else {
-                $query = $this->pdo->prepare(<<<SQL
-UPDATE "$this->tableName" SET "next_flush" = NOW() + "time_window", "limit" = "init_limit"
-WHERE "key_group" = :key_group AND "next_flush" < NOW()
-SQL);
-                $query->execute(['key_group' => $this->keyGroup]);
             }
 
             if ($blocking) {
